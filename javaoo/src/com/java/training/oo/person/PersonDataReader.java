@@ -24,9 +24,10 @@ public class PersonDataReader {
                                          .setUsername(sa[2])
                                          .setPassword(sa[3])
                                          .setPersonProperties(PersonProperties.newInstance()
-                                                                              .setLanguage(sa[4])))
+                                                                              .setLanguage(sa[4])
+                                                                              .setPersonType(EPersonType.valueOf(sa[5])))
+                                         .fillAccouns(sa[6]))
                         .collect(Collectors.toList());
-
         } catch (Exception eLoc) {
             eLoc.printStackTrace();
         }
@@ -34,7 +35,7 @@ public class PersonDataReader {
     }
 
     public static boolean cvb(final String[] sa) {
-        boolean ret = sa.length == 5;
+        boolean ret = sa.length == 7;
         if (!ret) {
             System.err.println("Yanlış satır : "
                                + Arrays.asList(sa)

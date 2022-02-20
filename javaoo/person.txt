@@ -1,3 +1,3 @@
-osman,yay,osmanyay,1234,tr
-ali,veli,aliveli,1234,eng
-ali,ulas,alivulas,1234,esp
+osman,yay,osmanyay,1234,tr,SILVER,account1;TL;1000;account2;USD;100000
+ali,veli,aliveli,1234,eng,GOLD,local_tl;TL;1000;local_usd;USD;5000;local_euro;EURO;2000
+ali,ulas,alivulas,1234,esp,PLATINIUM,my_tl;TL;1000;my_usd;USD;5000;my_euro;EURO;2000

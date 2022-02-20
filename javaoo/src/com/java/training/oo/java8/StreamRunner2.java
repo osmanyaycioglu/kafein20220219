@@ -49,6 +49,16 @@ public class StreamRunner2 {
                                                  .peek(p -> System.out.println(p))
                                                  .collect(Collectors.toMap(p -> p.getName(),
                                                                            p -> p));
+        List<Person> collect2Loc = list1Loc.stream()
+                                           .distinct()
+                                           .sorted()
+                                           .filter(s -> s.length() >= 5)
+                                           .map(s -> Person.newInstance()
+                                                           .setName(s))
+                                           .filter(p -> p.getName()
+                                                         .contains("a"))
+                                           .peek(p -> System.out.println(p))
+                                           .collect(Collectors.toList());
         IntSummaryStatistics summaryStatisticsLoc = list1Loc.stream()
                                                             .distinct()
                                                             .sorted()
