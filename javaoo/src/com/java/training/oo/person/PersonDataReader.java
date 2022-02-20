@@ -4,12 +4,47 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class PersonDataReader {
 
     public List<Person> readPersons(final String filename) {
+        try {
+            Path pathLoc = Paths.get(filename);
+            return Files.readAllLines(pathLoc)
+                        .stream()
+                        .map(s -> s.split(","))
+                        .filter(PersonDataReader::cvb)
+                        .map(sa -> Person.newInstance()
+                                         .setName(sa[0])
+                                         .setSurname(sa[1])
+                                         .setUsername(sa[2])
+                                         .setPassword(sa[3])
+                                         .setPersonProperties(PersonProperties.newInstance()
+                                                                              .setLanguage(sa[4])))
+                        .collect(Collectors.toList());
+
+        } catch (Exception eLoc) {
+            eLoc.printStackTrace();
+        }
+        return null;
+    }
+
+    public static boolean cvb(final String[] sa) {
+        boolean ret = sa.length == 5;
+        if (!ret) {
+            System.err.println("Yanlış satır : "
+                               + Arrays.asList(sa)
+                                       .stream()
+                                       .collect(Collectors.toList()));
+        }
+        return ret;
+    }
+
+    public List<Person> readPersons2(final String filename) {
         List<Person> personsLoc = new ArrayList<>();
         try {
             Path pathLoc = Paths.get(filename);
